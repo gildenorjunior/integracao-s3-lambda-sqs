@@ -1,0 +1,25 @@
+{
+  "name": "integracao-s3-lambda-sqs",
+  "version": "1.0.0",
+  "description": "Projeto de estudos que consiste em uma Lambda NodeJS que recebe eventos de um bucket S3 e envia para uma fila SQS",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node index.js --watch --no-warnings",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NodeJS",
+    "S3",
+    "SQS",
+    "AWS"
+  ],
+  "author": "Junior Silva",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-lambda-powertools/logger": "^1.18.0",
+    "@aws-sdk/client-s3": "^3.515.0",
+    "@aws-sdk/client-sqs": "^3.515.0",
+    "fast-csv": "^5.0.1"
+  }
+}
