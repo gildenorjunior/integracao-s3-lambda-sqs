@@ -23,6 +23,7 @@ resource "aws_lambda_function" "lambda" {
   function_name = var.lambda_name
   architectures = ["x86_64"]
   role          = aws_iam_role.iam_lambda.arn
+  description = "Lambda reponsavel por receber eventos do s3, converter csv e enviar para um fila SQS"
   handler       = var.handler
   runtime       = var.runtime
   filename      = var.filename_lambda
