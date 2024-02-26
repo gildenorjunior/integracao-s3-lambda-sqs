@@ -1,0 +1,27 @@
+name: Destroy Infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_destroy:
+        description: 'Confirme para destruir todos os recursos'
+        required: true
+        default: 'no'
+
+jobs:
+  destroy_infrastructure:
+    name: Destroy Infra
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm_destroy == 'yes'
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.7.3
+
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
+        working-directory: ./infra
