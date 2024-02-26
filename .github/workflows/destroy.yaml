@@ -18,6 +18,9 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.inputs.confirm_destroy == 'yes'
     steps:
+      - name: Clear Terraform Cache
+        run: rm -rf .infra/.terraform
+
       - name: Checkout Repository
         uses: actions/checkout@v2
 
