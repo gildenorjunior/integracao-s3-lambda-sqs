@@ -30,6 +30,10 @@ jobs:
         working-directory: ./infra
         run: terraform init
 
+      - name: Terraform Plan
+        working-directory: ./infra
+        run: terraform plan
+
       - name: Terraform Destroy
         run: terraform destroy -auto-approve
         working-directory: ./infra
