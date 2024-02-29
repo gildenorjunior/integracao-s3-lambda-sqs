@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       confirm_destroy:
-        description: 'Confirme para destruir todos os recursos'
+        description: 'Confirme com [yes] para destruir todos os recursos'
         required: true
         default: 'no'
 
