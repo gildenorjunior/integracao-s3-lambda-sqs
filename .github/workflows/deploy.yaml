@@ -26,6 +26,63 @@ jobs:
         working-directory: ./infra
         run: terraform init
 
+      - name: Check if resources exist
+        id: check_resources
+        run: |
+          if terraform show | grep "aws_s3_bucket.bucketS3"; then
+            echo "::set-output name=resources_exist::true"
+          else
+            echo "::set-output name=resources_exist::false"
+
+          if terraform show | grep "aws_s3_bucket.fila_sqs"; then
+            echo "::set-output name=resources_exist::true"
+          else
+            echo "::set-output name=resources_exist::false"
+
+          if terraform show | grep "aws_s3_bucket.lambda"; then
+            echo "::set-output name=resources_exist::true"
+          else
+            echo "::set-output name=resources_exist::false"
+
+          if terraform show | grep "aws_s3_bucket.s3_trigger"; then
+            echo "::set-output name=resources_exist::true"
+          else
+            echo "::set-output name=resources_exist::false"
+
+          if terraform show | grep "aws_s3_bucket.aws_lambda_permissao_evento_s3"; then
+            echo "::set-output name=resources_exist::true"
+          else
+            echo "::set-output name=resources_exist::false"
+
+          if terraform show | grep "aws_s3_bucket.assume_role"; then
+            echo "::set-output name=resources_exist::true"
+          else
+            echo "::set-output name=resources_exist::false"
+
+          if terraform show | grep "aws_s3_bucket.iam_lambda"; then
+            echo "::set-output name=resources_exist::true"
+          else
+            echo "::set-output name=resources_exist::false"
+
+          if terraform show | grep "aws_s3_bucket.lambda_policy_document"; then
+            echo "::set-output name=resources_exist::true"
+          else
+            echo "::set-output name=resources_exist::false"
+
+          if terraform show | grep "aws_s3_bucket.lambda_policy"; then
+            echo "::set-output name=resources_exist::true"
+          else
+            echo "::set-output name=resources_exist::false"
+
+          if terraform show | grep "aws_s3_bucket.attachment-policy-lambda"; then
+            echo "::set-output name=resources_exist::true"
+          else
+            echo "::set-output name=resources_exist::false"
+
+      - name: Apply Terraform
+        if: steps.check_resources.outputs.resources_exist != 'true'
+        run: terraform apply -auto-approve
+
       - name: Terraform Plan
         working-directory: ./infra
         run: terraform plan
