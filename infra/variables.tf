@@ -38,7 +38,7 @@ variable "handler" {
 variable "filename_lambda" {
   type        = string
   description = "File name lambda"
-  default     = "../codigo-lambda.zip"
+  default     = "/codigo-lambda.zip"
 }
 
 variable "memory_size" {
